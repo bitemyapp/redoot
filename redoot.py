@@ -2,20 +2,22 @@ import reddit
 import requests
 import urllib
 import json
+import sqlite3
+
 import auth
 
 woot_url = "http://api.woot.com/2/events.json"
 
 def auth():
     r = reddit.Reddit(user_agent="redoot by /u/Mob_Of_One")
-    r.login(username=username, password=password)
+    r.login(username=auth.username, password=auth.password)
     return r
 
 def generate_submission(woot_product):
     return woot_product['Title']
 
 def woot_options():
-    return {"site":"www.woot.com", "key":api_key}
+    return {"site":"www.woot.com", "key":auth.api_key}
 
 def generate_url():
     options = woot_options()
