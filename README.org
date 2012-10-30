@@ -1,0 +1,15 @@
+* Redoot
+The Reddit bot that gets you to buy crap from Woot!
+
+** Execution
+python ./redoot.py
+
+** What's interesting about this?
+
+Rather than naively posting whatever is on woot directly to the
+subreddit as a submission, it treats it as a synchronization
+problem. It tracks what has already been posted by checking the posts
+on the subreddit to see if it'd already posted something.
+
+I plan to change this synchronization tactic to a sqlite database
+soon.
