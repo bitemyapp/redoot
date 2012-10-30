@@ -8,6 +8,11 @@ import auth
 
 woot_url = "http://api.woot.com/2/events.json"
 
+def get_cursor():
+    conn = sqlite3.connect('woots.db')
+    cursor = conn.cursor()
+    return cursor
+
 def auth():
     r = reddit.Reddit(user_agent="redoot by /u/Mob_Of_One")
     r.login(username=auth.username, password=auth.password)
