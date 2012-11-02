@@ -70,13 +70,14 @@ def get_woot_posts(current_woots):
             val[0] = True
             found[post.title] = val
     to_be_posted = need_posted(found)
+    # to_be_posted = found
     for key in to_be_posted.keys():
         row = to_be_posted[key]
         woot = row[1]
         offers = woot['Offers']
         offer_url = offers[0]['OfferUrl']
         text = post_text(url = offer_url)
-        print "Posting: %s" % key
+        print "Posting: %s with text" % (key, text)
         import sys; sys.stdout = sys.__stdout__; import ipdb; ipdb.set_trace()
         response = submit(client, "woot", key, text=text)
         print "%s" % response
