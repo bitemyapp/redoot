@@ -77,7 +77,7 @@ def get_woot_posts(current_woots):
         offers = woot['Offers']
         offer_url = offers[0]['OfferUrl']
         text = post_text(url = offer_url)
-        print "Posting: %s with text" % (key, text)
+        print "Posting: %s with text %s" % (key, text)
         import sys; sys.stdout = sys.__stdout__; import ipdb; ipdb.set_trace()
         response = submit(client, "woot", key, text=text)
         print "%s" % response
