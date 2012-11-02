@@ -63,7 +63,6 @@ def get_woot_posts(current_woots):
             val[0] = True
             found[post.title] = val
     to_be_posted = need_posted(found)
-    import sys; sys.stdout = sys.__stdout__; import ipdb; ipdb.set_trace()
     for key in to_be_posted.keys():
         row = to_be_posted[key]
         woot = row[1]
