@@ -40,9 +40,16 @@ def need_posted(found):
             to_be_posted[key] = found[key]
     return to_be_posted
 
-def submit(client, subreddit, title):
+def post_text(url = None):
+    if not url:
+        url = "http://www.woot.com/"
+    return "Posted by redoot, made by Mob_of_One!\nFound at %s" % url
+
+def submit(client, subreddit, title, text=None):
+    if not text:
+        text = post_text()
     try:
-        last_post = client.submit(subreddit, title, text="Posted by redoot, made by Mob_of_One!\nFound at http://www.woot.com/")
+        last_post = client.submit(subreddit, title, text=text)
         if last_post and last_post.permalink:
             return last_post
     except Exception as e:
@@ -66,10 +73,12 @@ def get_woot_posts(current_woots):
     for key in to_be_posted.keys():
         row = to_be_posted[key]
         woot = row[1]
-        site = woot['Site']
+        offers = woot['Offers']
+        offer_url = offers[0]['OfferUrl']
+        text = post_text(url = offer_url)
         print "Posting: %s" % key
         import sys; sys.stdout = sys.__stdout__; import ipdb; ipdb.set_trace()
-        response = submit(client, "woot", key)
+        response = submit(client, "woot", key, text=text)
         print "%s" % response
 
 if __name__ == "__main__":
