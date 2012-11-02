@@ -7,7 +7,7 @@ import auth
 
 woot_url = "http://api.woot.com/2/events.json"
 
-def auth():
+def login():
     r = reddit.Reddit(user_agent="redoot by /u/Mob_Of_One")
     r.login(username=auth.username, password=auth.password)
     return r
@@ -49,7 +49,7 @@ def submit(client, subreddit, title):
         return e
 
 def get_woot_posts(current_woots):
-    client = auth()
+    client = login()
     woot = client.get_subreddit("woot")
     posts = woot.get_new_by_date()
     found = {}
